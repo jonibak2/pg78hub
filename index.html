@@ -5,75 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Хаб PG78</title>
   <style>
-  body {
-    font-family: sans-serif;
-    background: url('bg.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    margin: 0;
-    padding: 2rem;
-    text-align: center;
-    height: 100vh;
-  }
+    body {
+      font-family: sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      margin: 0;
+      padding: 2rem;
+      text-align: center;
+      height: 100vh;
+    }
 
-  h1 {
-    margin-bottom: 2rem;
-    text-shadow: 0 0 10px black;
-  }
+    h1 {
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px black;
+    }
 
-  .links {
-    display: grid;
-    gap: 1rem;
-    max-width: 500px;
-    margin: 0 auto;
-  }
+    .links {
+      display: grid;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
 
-  .link-card {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 12px;
-    padding: 1rem;
-    text-decoration: none;
-    color: white;
-    transition: transform 0.2s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  }
+    .link-card {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      padding: 1rem;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
 
-  .link-card:hover {
-    transform: scale(1.03);
-    background: rgba(255, 255, 255, 0.1);
-  }
+    .link-card:hover {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.1);
+    }
 
-  .link-card span {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
+    .link-card span {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
 
-  .disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    background: rgba(0, 0, 0, 0.4);
-  }
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      background: rgba(0, 0, 0, 0.4);
+    }
 
-  .split-container {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-  }
+    .split-container {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+    }
 
-  .split-container .link-card {
-    flex: 1;
-    margin: 0;
-  }
+    .split-container .link-card {
+      flex: 1;
+      margin: 0;
+    }
 
-  footer {
-    margin-top: 3rem;
-    font-size: 0.9rem;
-    color: #ccc;
-    text-shadow: 0 0 5px black;
-  }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #ccc;
+      text-shadow: 0 0 5px black;
+    }
+
+    .moon-phase {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
   </style>
 </head>
 <body>
+  <div class="moon-phase" id="moonPhase"></div>
   <h1>🧭 Хаб PG78</h1>
   <div class="links">
     <a class="link-card" href="https://jonibak2.github.io/birthday-calendar/">
@@ -100,5 +107,37 @@
   <footer>
     © PG78
   </footer>
+
+  <script>
+    // Функция для вычисления фазы луны
+    function getMoonPhase(date) {
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1; // Месяцы в JS начинаются с 0
+      const day = date.getDate();
+
+      // Простой алгоритм для вычисления возраста луны (примерный)
+      let lp = 2551443; // Синодический период Луны в секундах (29.53 дня)
+      let now = new Date(year, month - 1, day);
+      let newMoon = new Date(1970, 0, 7, 20, 35, 0); // Опорная дата новолуния
+      let phase = ((now.getTime() - newMoon.getTime()) / 1000) % lp;
+      let age = Math.floor(phase / (24 * 3600)); // Возраст Луны в днях
+
+      // Выбор эмодзи в зависимости от фазы
+      if (age === 0 || age === 29) return "🌑"; // Новолуние
+      else if (age >= 1 && age <= 6) return "🌒"; // Растущий серп
+      else if (age === 7 || age === 8) return "🌓"; // Первая четверть
+      else if (age >= 9 && age <= 13) return "🌔"; // Растущий горб
+      else if (age === 14 || age === 15) return "🌕"; // Полнолуние
+      else if (age >= 16 && age <= 20) return "🌖"; // Убывающий горб
+      else if (age === 21 || age === 22) return "🌗"; // Последняя четверть
+      else if (age >= 23 && age <= 28) return "🌘"; // Убывающий серп
+      else return "🌑"; // На всякий случай
+    }
+
+    // Установка текущей фазы луны
+    const moonPhaseElement = document.getElementById('moonPhase');
+    const today = new Date();
+    moonPhaseElement.textContent = getMoonPhase(today);
+  </script>
 </body>
 </html>
