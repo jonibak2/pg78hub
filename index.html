@@ -14,6 +14,7 @@
       padding: 2rem;
       text-align: center;
       height: 100vh;
+      overflow-x: hidden; /* Убираем горизонтальную прокрутку */
     }
 
     h1 {
@@ -76,17 +77,18 @@
       font-size: 3rem;
       margin-bottom: 1rem;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-      cursor: pointer; /* Указывает, что можно кликнуть */
-      transition: transform 0.2s;
+      cursor: pointer;
+      transition: opacity 0.2s; /* Плавный переход только для opacity */
+      display: inline-block; /* Фиксируем размер элемента */
     }
 
     .moon-phase:hover {
-      transform: scale(1.1); /* Лёгкое увеличение при наведении */
+      opacity: 0.8; /* Эффект при наведении — только прозрачность */
     }
 
     .moon-phase.disabled {
       opacity: 0.5;
-      pointer-events: none; /* Отключает клики во время задержки */
+      pointer-events: none;
     }
   </style>
 </head>
@@ -157,12 +159,12 @@
         audio.currentTime = 0; // Сбрасываем звук в начало
         audio.play();
         canPlay = false;
-        moonPhaseElement.classList.add('disabled'); // Отключаем визуально
+        moonPhaseElement.classList.add('disabled');
 
         setTimeout(() => {
           canPlay = true;
-          moonPhaseElement.classList.remove('disabled'); // Включаем обратно
-        }, 7500); // 7.5 секунд = 7500 миллисекунд
+          moonPhaseElement.classList.remove('disabled');
+        }, 7500); // 7.5 секунд
       }
     });
   </script>
