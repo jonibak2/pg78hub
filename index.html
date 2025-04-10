@@ -3,384 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PG Awards 2024</title>
+  <title>Хаб PG78</title>
   <style>
     body {
-      font-family: 'Georgia', serif;
-      background: url('bg_vamp.jpg') no-repeat center top fixed;
+      font-family: sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #e0e0e0;
+      color: white;
       margin: 0;
-      padding: 3rem;
+      padding: 2rem;
       text-align: center;
-      position: relative;
-      overflow-x: hidden;
-      background-color: #1a0d0d;
-    }
-
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(20, 0, 0, 0.8), rgba(50, 0, 10, 0.9));
-      z-index: 0;
-    }
-
-    .spotlight {
-      position: absolute;
-      width: 200px;
       height: 100vh;
-      background: radial-gradient(circle, rgba(150, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
-      opacity: 0.5;
-      transform-origin: top center;
-      z-index: 0;
-    }
-
-    .spotlight:nth-child(1) {
-      left: 10%;
-      animation: sweep 8s infinite ease-in-out;
-    }
-
-    .spotlight:nth-child(2) {
-      left: 40%;
-      animation: sweep 10s infinite ease-in-out reverse;
-    }
-
-    .spotlight:nth-child(3) {
-      left: 70%;
-      animation: sweep 9s infinite ease-in-out;
-    }
-
-    @keyframes sweep {
-      0% { transform: rotate(-30deg); }
-      50% { transform: rotate(30deg); }
-      100% { transform: rotate(-30deg); }
+      overflow-x: hidden;
     }
 
     h1 {
-      font-size: 4rem;
-      margin-bottom: 4rem;
-      text-shadow: 0 0 20px rgba(150, 0, 0, 0.8), 0 0 40px rgba(100, 0, 0, 0.5);
-      animation: glow 2s ease-in-out infinite alternate;
-      position: relative;
-      z-index: 1;
-      color: #b30000;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px black;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 20px rgba(150, 0, 0, 0.8), 0 0 40px rgba(100, 0, 0, 0.5); }
-      to { text-shadow: 0 0 30px rgba(150, 0, 0, 1), 0 0 60px rgba(100, 0, 0, 0.7); }
-    }
-
-    .header-left {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      z-index: 1;
-    }
-
-    .back-button,
-    .github-button {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      color: #e0e0e0;
-      background: #3d0000;
-      box-shadow: 0 0 10px rgba(150, 0, 0, 0.5);
-    }
-
-    .github-button {
-      font-size: 0.9rem;
-      padding: 0.3rem 0.8rem;
-    }
-
-    .nomination-container {
-      max-width: 1200px;
+    .links {
+      display: grid;
+      gap: 1rem;
+      max-width: 500px;
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
     }
 
-    .nomination-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-      justify-content: center;
+    .link-card {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      padding: 1rem;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     }
 
-    .nomination-card, .video-card, .medium-card, .highlight-image {
-      background-color: #1c1c1c;
-      border-radius: 15px;
-      padding: 2rem;
-      border: 2px solid #000000;
-      box-shadow: 0 0 25px rgba(150, 0, 0, 0.5);
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .link-card:hover {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.1);
     }
 
-    .nomination-card:hover {
-      box-shadow: 0 0 40px rgba(150, 0, 0, 0.8);
-      transform: translateY(-5px);
-    }
-
-    .nomination-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    .nomination-title {
-      font-size: 1.8rem;
+    .link-card span {
+      font-size: 1.25rem;
       font-weight: bold;
-      color: #b30000;
-      text-shadow: 0 0 15px rgba(150, 0, 0, 0.7);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    
-    .video-card {
-      background: linear-gradient(135deg, rgba(50, 0, 0, 0.6), rgba(20, 0, 10, 0.9));
-      border-radius: 20px;
-      padding: 3rem;
-      border: 2px solid #000000;
-      box-shadow: 0 0 40px rgba(150, 0, 0, 0.7);
-      margin-bottom: 4rem;
     }
 
-    .video-card video {
-      width: 100%;
-      height: 600px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      background: rgba(0, 0, 0, 0.4);
     }
 
-    .video-card a {
-      color: #b30000;
-      text-decoration: none;
-      font-size: 1.5rem;
-      display: block;
-      margin-top: 1rem;
-    }
-
-    .video-card a:hover {
-      text-shadow: 0 0 10px #e0e0e0;
-    }
-
-    .medium-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .medium-card {
-      background-color: #1c1c1c;
-      border-radius: 15px;
-      padding: 2rem;
-      border: 2px solid #000000;
-      box-shadow: 0 0 30px rgba(150, 0, 0, 0.6);
-      height: 600px;
-      transition: all 0.3s ease;
+    .split-container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      gap: 1rem;
+      width: 100%;
     }
 
-    .medium-card:hover {
-      box-shadow: 0 0 45px rgba(150, 0, 0, 0.8);
-      transform: translateY(-5px);
-    }
-
-    .medium-card img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .highlight-image {
-      background: linear-gradient(135deg, rgba(50, 0, 0, 0.6), rgba(20, 0, 10, 0.9));
-      border-radius: 20px;
-      padding: 3rem;
-      border: 2px solid #000000;
-      box-shadow: 0 0 40px rgba(150, 0, 0, 0.7);
-      margin-top: 4rem;
-    }
-
-    .highlight-image img {
-      width: 1280px;
-      height: 720px;
-      max-width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .highlight-image a {
-      color: #b30000;
-      text-decoration: none;
-      font-size: 1.5rem;
-      display: block;
-      margin-top: 1rem;
-    }
-
-    .highlight-image a:hover {
-      text-shadow: 0 0 10px #e0e0e0;
-    }
-
-    .quality-note {
-      font-size: 1rem;
-      color: #e0e0e0;
-      text-shadow: 0 0 10px rgba(150, 0, 0, 0.5);
-      margin-top: 1rem;
+    .split-container .link-card {
+      flex: 1;
+      margin: 0;
     }
 
     footer {
-      margin-top: 5rem;
-      font-size: 1.2rem;
-      color: #b30000;
-      text-shadow: 0 0 15px rgba(150, 0, 0, 0.7);
-      position: relative;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #ccc;
+      text-shadow: 0 0 5px black;
+    }
+
+    .moon-phase {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .moon-phase:hover {
+      transform: scale(1.1);
+    }
+
+    .header-top {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
       z-index: 1;
+    }
+
+    .github-link {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .github-link:hover {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .alpha-test {
+      font-size: 0.8rem;
+      color: #bbb;
+      text-shadow: 0 0 5px black;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
 <body>
-  <div class="spotlight"></div>
-  <div class="spotlight"></div>
-  <div class="spotlight"></div>
-
-  <div class="header-left">
-    <a href="https://jonibak2.github.io/pg78hub/" class="back-button">← Назад в хаб</a>
-    <a href="https://github.com/jonibak2" class="github-button">Мой GitHub</a>
+  <div class="header-top">
+    <a href="https://github.com/jonibak2" class="github-link">Мой GitHub</a>
   </div>
-
-  <h1>PG Awards 2024 💥</h1>
-  <div class="nomination-container">
-    <div class="video-card">
-      <div class="nomination-title">Откат года</div>
-      <video controls>
-        <source src="perdez.mp4" type="video/mp4">
-        Ваш браузер не поддерживает воспроизведение видео.
-      </video>
-      <a href="https://www.youtube.com/watch?v=F6FitCvKLi8" target="_blank">Смотреть на YouTube</a>
+  <div class="moon-phase" id="moonPhase"></div>
+  <h1>🧭 Хаб PG78</h1>
+  <div class="links">
+    <a class="link-card" href="https://jonibak2.github.io/birthday-calendar/">
+      <span>🎂 Календарь дней рождений</span>
+      <div>Следи за праздниками ПГшеров</div>
+    </a>
+    
+    <div class="split-container">
+      <a class="link-card" href="https://jonibak2.github.io/PGA23/">
+        <span>🎇 PGA23</span>
+        <div>Номинации 2023</div>
+      </a>
+      <a class="link-card" href="https://jonibak2.github.io/PGA24/">
+        <span>🩸 PGA24</span>
+        <div>Номинации 2024</div>
+      </a>
     </div>
 
-    <div class="medium-grid">
-      <div class="medium-card">
-        <div class="nomination-title">Игра года</div>
-        <img src="igra_goda.jpg" alt="Игра года">
-      </div>
-      <div class="medium-card">
-        <div class="nomination-title">Человек-мем года</div>
-        <img src="chelovek_mem_goda.jpg" alt="Человек-мем года">
-      </div>
-    </div>
-
-    <div class="nomination-grid">
-      <div class="nomination-card">
-        <div class="nomination-title">Долбоёб года</div>
-        <img src="dolboeb_goda.jpg" alt="Долбоёб года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Похуист года</div>
-        <img src="pohuist_goda.jpg" alt="Похуист года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Нытик года</div>
-        <img src="nytik_goda.jpg" alt="Нытик года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Сигма года</div>
-        <img src="sigma_goda.jpg" alt="Сигма года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Работяга года</div>
-        <img src="robotyaga_goda.jpg" alt="Работяга года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Драчун года</div>
-        <img src="drachun_goda.jpg" alt="Драчун года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Душнила года</div>
-        <img src="dushnila_goda.jpg" alt="Душнила года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Певец года</div>
-        <img src="pevec_goda.jpg" alt="Певец года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Симп года</div>
-        <img src="simp_goda.jpg" alt="Симп года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Либерал года</div>
-        <img src="liberaly_goda.jpg" alt="Либерал года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Событие года</div>
-        <img src="sobytie_goda.jpg" alt="Событие года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Флудер года</div>
-        <img src="fluder_goda.jpg" alt="Флудер года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Анимешник года</div>
-        <img src="animeshnik_goda.jpg" alt="Анимешник года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Байтер года</div>
-        <img src="baiter_goda.jpg" alt="Байтер года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Провал года</div>
-        <img src="proval_goda.jpg" alt="Провал года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Самая высокая порядочность года</div>
-        <img src="poryadochnost_goda.jpg" alt="Самая высокая порядочность года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Диспечер года</div>
-        <img src="dispecher_goda.jpg" alt="Диспечер года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Мастер оправданий года</div>
-        <img src="master_opravdaniy_goda.jpg" alt="Мастер оправданий года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Главный опаздун года</div>
-        <img src="opazdun_goda.jpg" alt="Главный опаздун года">
-      </div>
-      <div class="nomination-card">
-        <div class="nomination-title">Нетакуся года</div>
-        <img src="netakusya_goda.jpg" alt="Нетакуся года">
-      </div>
-    </div>
-
-    <div class="highlight-image">
-      <div class="nomination-title">💔🩸</div>
-      <img src="maxresdefault.jpg" alt="Нарезка клипов">
-      <a href="https://www.youtube.com/watch?v=pxW-TnZgw5Y" target="_blank">Смотреть на YouTube</a>
-      <div class="quality-note">Видео прывышает вес фрешки поэтму придётся смотреть на ютубе</div>
-    </div>
+    <a class="link-card" href="https://transit-finder.com/">
+      <span>для драгомана 💋</span>
+      <div>💞</div>
+    </a>
   </div>
   <footer>
-    © 2024 Номинации | Торжественно представлено сообществом
+    © PG78
+    <div class="alpha-test">Альфа тест :3</div>
   </footer>
+
+  <script>
+    // Функция для вычисления фазы луны
+    function getMoonPhase(date) {
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+
+      let lp = 2551443;
+      let now = new Date(year, month - 1, day);
+      let newMoon = new Date(1970, 0, 7, 20, 35, 0);
+      let phase = ((now.getTime() - newMoon.getTime()) / 1000) % lp;
+      let age = Math.floor(phase / (24 * 3600));
+
+      if (age === 0 || age === 29) return "🌑";
+      else if (age >= 1 && age <= 6) return "🌒";
+      else if (age === 7 || age === 8) return "🌓";
+      else if (age >= 9 && age <= 13) return "🌔";
+      else if (age === 14 || age === 15) return "🌕";
+      else if (age >= 16 && age <= 20) return "🌖";
+      else if (age === 21 || age === 22) return "🌗";
+      else if (age >= 23 && age <= 28) return "🌘";
+      else return "🌑";
+    }
+
+    // Установка текущей фазы луны
+    const moonPhaseElement = document.getElementById('moonPhase');
+    const today = new Date();
+    moonPhaseElement.textContent = getMoonPhase(today);
+
+    // Воспроизведение звука при клике
+    const audio = new Audio('https://raw.githubusercontent.com/jonibak2/pg78hub/main/bansuka.mp3');
+    let canPlay = true;
+
+    moonPhaseElement.addEventListener('click', () => {
+      if (canPlay) {
+        audio.currentTime = 0;
+        audio.play();
+        canPlay = false;
+
+        setTimeout(() => {
+          canPlay = true;
+        }, 7500);
+      }
+    });
+  </script>
 </body>
 </html>
