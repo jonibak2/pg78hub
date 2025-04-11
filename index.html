@@ -59,11 +59,22 @@
       display: flex;
       gap: 1rem;
       width: 100%;
+      justify-content: center;
     }
 
     .split-container .link-card {
       flex: 1;
       margin: 0;
+    }
+
+    .single-card-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .single-card-container .link-card {
+      flex: none;
+      width: 50%;
     }
 
     footer {
@@ -140,10 +151,12 @@
       </a>
     </div>
 
-    <a class="link-card" href="https://transit-finder.com/">
-      <span>для драгомана 💋</span>
-      <div>💞</div>
-    </a>
+    <div class="single-card-container">
+      <a class="link-card" href="https://jonibak2.github.io/PGA25/">
+        <span>💛 PGA25</span>
+        <div>Номинации 2025</div>
+      </a>
+    </div>
   </div>
   <footer>
     © PG78
@@ -151,7 +164,6 @@
   </footer>
 
   <script>
-    // Функция для вычисления фазы луны
     function getMoonPhase(date) {
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
@@ -174,12 +186,10 @@
       else return "🌑";
     }
 
-    // Установка текущей фазы луны
     const moonPhaseElement = document.getElementById('moonPhase');
     const today = new Date();
     moonPhaseElement.textContent = getMoonPhase(today);
 
-    // Воспроизведение звука при клике
     const audio = new Audio('https://raw.githubusercontent.com/jonibak2/pg78hub/main/bansuka.mp3');
     let canPlay = true;
 
