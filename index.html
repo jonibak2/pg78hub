@@ -127,6 +127,33 @@
       text-shadow: 0 0 5px black;
       margin-top: 0.5rem;
     }
+
+    .video-button {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .video-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 2000;
+    }
+
+    .video-overlay video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
@@ -163,6 +190,13 @@
     © PG78
     <div class="alpha-test">идите нахуй что это за попки</div>
   </footer>
+
+  <img src="lo.png" class="video-button" id="videoButton">
+  <div class="video-overlay" id="videoOverlay">
+    <video id="loloVideo" controls>
+      <source src="lolo.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <script>
     function getMoonPhase(date) {
@@ -204,6 +238,34 @@
           canPlay = true;
         }, 7500);
       }
+    });
+
+    const videoButton = document.getElementById('videoButton');
+    const videoOverlay = document.getElementById('videoOverlay');
+    const loloVideo = document.getElementById('loloVideo');
+    let canPlayVideo = true;
+
+    videoButton.addEventListener('click', () => {
+      if (canPlayVideo) {
+        videoOverlay.style.display = 'block';
+        loloVideo.play();
+        canPlayVideo = false;
+
+        setTimeout(() => {
+          canPlayVideo = true;
+        }, 15000);
+      }
+    });
+
+    loloVideo.addEventListener('ended', () => {
+      videoOverlay.style.display = 'none';
+      loloVideo.currentTime = 0;
+    });
+
+    loloVideo.addEventListener('click', () => {
+      videoOverlay.style.display = 'none';
+      loloVideo.pause();
+      loloVideo.currentTime = 0;
     });
   </script>
 </body>
