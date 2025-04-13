@@ -154,6 +154,28 @@
       height: 100%;
       object-fit: contain;
     }
+
+    /* Новый стиль для надписи */
+    .ps-dragoman {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+      text-shadow: 0 0 5px black;
+      z-index: 1000;
+    }
+
+    .ps-dragoman a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .ps-dragoman a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -196,6 +218,11 @@
     <video id="loloVideo" controls>
       <source src="lolo.mp4" type="video/mp4">
     </video>
+  </div>
+
+  <!-- Новая надпись -->
+  <div class="ps-dragoman">
+    <a href="https://rule34.xxx/index.php?page=post&s=list&tags=double_penetration+-ai_generated+" target="_blank">P.s для драгомана</a>
   </div>
 
   <script>
